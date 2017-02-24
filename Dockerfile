@@ -5,6 +5,7 @@ MAINTAINER gaoermai <gaoermai@gmail.com>
 ENV WEBROOT /data/webroot/
 
 RUN mkdir -p /data/webroot/
+ADD index.php /data/webroot/index.php
 WORKDIR /data/webroot/
 
 RUN apk --update add autoconf build-base php5-dev
