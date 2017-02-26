@@ -8,11 +8,11 @@ RUN mkdir -p /data/webroot/
 ADD index.php /data/webroot/index.php
 WORKDIR /data/webroot/
 
-RUN apk --update add autoconf build-base php5-dev
+RUN apk --update add autoconf build-base php5-dev re2c
 RUN cd /tmp/ && \
-  curl https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.0.2 > cphalcon-3.0.2.tar.gz && \
-  tar zxf cphalcon-3.0.2.tar.gz && \
-  cd cphalcon-3.0.2/build && \
+  curl https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.0.4 > cphalcon-3.0.4.tar.gz && \
+  tar zxf cphalcon-3.0.4.tar.gz && \
+  cd cphalcon-3.0.4/build && \
   ./install
 ADD phalcon.ini /etc/php5/conf.d/phalcon.ini
 RUN rm -rf /tmp/cphalcon*
