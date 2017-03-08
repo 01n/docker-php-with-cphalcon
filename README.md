@@ -13,4 +13,26 @@ Phalcon（[官方网站](https://phalconphp.com)）是一个C编写的轻量级P
 
 在本镜像中，站点路径被定义在```/project/```，将站点文件加入到该文件夹下即可正常访问。增加了一个默认首页，输出```phpinfo();```的内容。
 
+## 开发版本
+
+**dev**分支和以**dev-**开头的TAG，是提供给开发工程师使用的本地开发镜像。
+
+### PHPUnit 6.0
+
+开发镜像安装了PHPUnit 6.0的PHAR版本（参考[这里](https://phpunit.de/manual/current/en/installation.html)），路径：
+
+```
+/usr/local/bin/phpunit
+```
+
+### SSHD
+
+方便通过PHPStorm运行容器内的PHPUnit，开发镜像启动了SSHD服务。登录账号：
+
+```
+用户名：root
+密码：123456
+```
+
+
 

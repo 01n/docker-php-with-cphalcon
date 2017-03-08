@@ -113,5 +113,21 @@ RUN mkdir -p $WEB_DOCUMENT_ROOT \
         /installers \
         /opt/docker/etc/php/fpm/pool.d/www.conf
 
+# PHPUnit
+RUN wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-6.0.phar \
+  && chmod +x /usr/local/bin/phpunit
+
+# 在Docker内启动SSH，方便通过PHPStorm运行PHPUnit
+RUN echo 'root:123456' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
 # Expose ports
-EXPOSE 80 443
+EXPOSE 80 443 22
+
+CMD ["/usr/sbin/sshd", "-D"]
