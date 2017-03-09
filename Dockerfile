@@ -114,8 +114,12 @@ RUN mkdir -p $WEB_DOCUMENT_ROOT \
         /opt/docker/etc/php/fpm/pool.d/www.conf
 
 # PHPUnit
-RUN wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-6.0.phar \
-  && chmod +x /usr/local/bin/phpunit
+RUN wget -O /usr/local/bin/phpunit-6.0.8 https://phar.phpunit.de/phpunit-6.0.8.phar \
+  && chmod +x /usr/local/bin/phpunit-6.0.8 \
+  && ln -s /usr/local/bin/phpunit-6.0.8 /usr/local/bin/phpunit-6
+RUN wget -O /usr/local/bin/phpunit-5.7.15 https://phar.phpunit.de/phpunit-5.7.15.phar \
+  && chmod +x /usr/local/bin/phpunit-5.7.15 \
+  && ln -s /usr/local/bin/phpunit-5.7.15 /usr/local/bin/phpunit-5.7
 
 # 在Docker内启动SSH，方便通过PHPStorm运行PHPUnit
 RUN echo 'root:123456' | chpasswd
